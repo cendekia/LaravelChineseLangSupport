@@ -1,9 +1,9 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
+use App\Post;
+use Illuminate\Support\Facades\App;
 
 class PostsController extends Controller {
 
@@ -14,7 +14,12 @@ class PostsController extends Controller {
 	 */
 	public function index()
 	{
-		return view('welcome');
+		$total = Post::count();
+		$quote = Post::find( rand(1, $total) );
+
+		$quote = ( App::getLocale() == 'en' ) ? $quote->title_locale_en : $quote->title_locale_zh_tw;
+
+		return view('welcome', compact('quote'));
 	}
 
 	/**
@@ -32,9 +37,11 @@ class PostsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(PostRequest $request)
 	{
-		//
+		Post::create($request->all());
+
+		return redirect(App::getLocale());
 	}
 
 	/**
