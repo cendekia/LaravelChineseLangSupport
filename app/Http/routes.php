@@ -18,5 +18,5 @@ App::setLocale($locale);
 
 Route::group(array('prefix' => $locale), function()
 {
-	Route::get('/', 'WelcomeController@index');
+	Route::resource('/', 'PostsController');
 });
