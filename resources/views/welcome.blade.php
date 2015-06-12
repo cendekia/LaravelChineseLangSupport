@@ -42,6 +42,10 @@
 			<div class="content">
 				<div class="title">{{ Lang::get('messages.welcome', ['name' => 'Webarq']) }}</div>
 				<div class="quote">{{ Inspiring::quote() }}</div>
+				<br>
+				<br>
+				<br>
+				<a href="{{ url('/'.App::getLocale().'/create') }}" class="btn">{{ Lang::get('messages.addNewQuote') }}</a>
 			</div>
 		</div>
 	</body>
