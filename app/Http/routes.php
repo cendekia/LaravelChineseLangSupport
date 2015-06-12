@@ -11,11 +11,12 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+$languages = ['en', 'zh-tw'];
+$locale = (in_array(Request::segment(1), $languages)) ? Request::segment(1) : null;
 
-Route::get('home', 'HomeController@index');
+App::setLocale($locale);
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+Route::group(array('prefix' => $locale), function()
+{
+	Route::get('/', 'WelcomeController@index');
+});

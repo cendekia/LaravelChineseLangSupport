@@ -40,7 +40,7 @@
 	<body>
 		<div class="container">
 			<div class="content">
-				<div class="title">Laravel 5</div>
+				<div class="title">{{ Lang::get('messages.welcome', ['name' => 'Webarq']) }}</div>
 				<div class="quote">{{ Inspiring::quote() }}</div>
 			</div>
 		</div>
